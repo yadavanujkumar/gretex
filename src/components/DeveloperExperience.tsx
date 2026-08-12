@@ -149,7 +149,7 @@ export function DeveloperExperience() {
                             __html: line
                               .replace(/('.*?'|".*?")/g, '<span class="text-green-400">$&</span>')
                               .replace(/\b(import|from|const|await|new|for|async|export)\b/g, '<span class="text-blue-400">$&</span>')
-                              .replace(/\b(function|class|return|if|else|try|catch)\b/g, '<span class="text-purple-400">$&</span>')
+                              .replace(/\b(function|return|if|else|try|catch)\b/g, '<span class="text-purple-400">$&</span>')
                               .replace(/([a-zA-Z0-9_]+)(?=\()/g, '<span class="text-yellow-300">$&</span>')
                           }}
                         />
