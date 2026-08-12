@@ -3,14 +3,33 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { MagneticButton } from "./MagneticButton";
 
 export function Hero() {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-background">
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] opacity-50 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+      {/* Background Gradient & Animated Grid */}
+      <div className="absolute inset-0 bg-background overflow-hidden">
+        {/* Animated Grid */}
+        <div 
+          className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
+          style={{
+            maskImage: 'radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%)',
+          }}
+        />
+        
+        {/* Glowing Orbs */}
+        <motion.div 
+          animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] opacity-50 pointer-events-none" 
+        />
+        <motion.div 
+          animate={{ x: [0, -20, 0], y: [0, 20, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] opacity-50 pointer-events-none" 
+        />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
@@ -48,23 +67,23 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
         >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <MagneticButton>
             <Link
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 h-12 px-8 text-base font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors shadow-lg w-full"
+              className="inline-flex items-center justify-center gap-2 h-12 px-8 text-base font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors shadow-lg w-full sm:w-auto"
             >
               Start Building Free
               <ArrowRight className="w-4 h-4" />
             </Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          </MagneticButton>
+          <MagneticButton>
             <Link
               href="#products"
-              className="inline-flex items-center justify-center h-12 px-8 text-base font-medium bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-lg transition-colors border border-border w-full"
+              className="inline-flex items-center justify-center h-12 px-8 text-base font-medium bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-lg transition-colors border border-border w-full sm:w-auto"
             >
               Explore Products
             </Link>
-          </motion.div>
+          </MagneticButton>
         </motion.div>
 
         {/* Mockup/Visual */}

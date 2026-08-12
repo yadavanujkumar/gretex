@@ -41,6 +41,9 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, subject, message, botField } = body;
 
+    // Artificial delay to show off the beautiful loading state in the UI
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
     // Spam Protection (Honeypot)
     if (botField) {
       // Act like it succeeded to fool the bot
