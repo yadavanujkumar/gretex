@@ -1,13 +1,13 @@
 "use client";
 
-import { Github, Slack, Figma, Trello, Gitlab, Hexagon, Database, Cloud, Zap, Shield } from "lucide-react";
+import { Hexagon, Database, Cloud, Zap, Shield, Code, Cpu, Layers, Box, Globe } from "lucide-react";
 
 const icons = [
-  { icon: Github, name: "GitHub" },
-  { icon: Slack, name: "Slack" },
-  { icon: Figma, name: "Figma" },
-  { icon: Trello, name: "Trello" },
-  { icon: Gitlab, name: "GitLab" },
+  { icon: Code, name: "GitHub" },
+  { icon: Globe, name: "Slack" },
+  { icon: Layers, name: "Figma" },
+  { icon: Box, name: "Trello" },
+  { icon: Cpu, name: "GitLab" },
   { icon: Database, name: "Supabase" },
   { icon: Cloud, name: "AWS" },
   { icon: Hexagon, name: "Vercel" },
