@@ -78,7 +78,7 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground">Visit us</h4>
-                  <p className="text-muted-foreground">100 AI Boulevard, San Francisco, CA 94107</p>
+                  <p className="text-muted-foreground">Level 5, Tech Park, Whitefield, Bengaluru, Karnataka 560066</p>
                 </div>
               </div>
             </div>
