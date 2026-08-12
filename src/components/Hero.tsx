@@ -1,15 +1,27 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { MagneticButton } from "./MagneticButton";
 
 export function Hero() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const mockupY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const fadeOut = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <section ref={ref} className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
       {/* Background Gradient & Animated Grid */}
-      <div className="absolute inset-0 bg-background overflow-hidden">
+      <motion.div style={{ y: backgroundY }} className="absolute inset-0 bg-background overflow-hidden">
         {/* Animated Grid */}
         <div 
           className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
@@ -30,9 +42,12 @@ export function Hero() {
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] opacity-50 pointer-events-none" 
         />
-      </div>
+      </motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+      <motion.div 
+        style={{ y: textY, opacity: fadeOut }}
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center"
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,8 +100,13 @@ export function Hero() {
             </Link>
           </MagneticButton>
         </motion.div>
+      </motion.div>
 
-        {/* Mockup/Visual */}
+      {/* Mockup/Visual */}
+      <motion.div 
+        style={{ y: mockupY }}
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center"
+      >
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -199,7 +219,7 @@ export function Hero() {
             </div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
